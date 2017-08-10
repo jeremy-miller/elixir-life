@@ -6,4 +6,4 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) walkthrough.
 
 - Phoenix
-- Elm + D3 frontend
+- D3
