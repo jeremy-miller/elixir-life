@@ -1,21 +1,33 @@
 defmodule LifeElixir do
-  @moduledoc false
+  @moduledoc """
+  Controls the Game of Life simulation.
+  """
 
   use GenServer
 
   import Enum, only: [map: 2, reduce: 3]
 
+  #############
   # API
+  #############
 
+  @doc """
+  Starts the `LifeElixir` GenServer.
+  """
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @doc """
+  Causes the Game of Life simulation to "tick" once.
+  """
   def tick do
     GenServer.call(__MODULE__, :tick)
   end
 
+  #############
   # Callbacks
+  #############
 
   def handle_call(:tick, _from, []) do
     get_cells()
