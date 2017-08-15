@@ -27,7 +27,8 @@ defmodule Cell do
   end
 
   @doc """
-  Start a new cell process at the given `position`.
+  Start a new `cell` child process in the supervisor at the given `position`.
+  Will call `start_link` above.
   """
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
