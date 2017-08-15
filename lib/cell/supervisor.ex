@@ -17,6 +17,10 @@ defmodule Cell.Supervisor do
     supervise(children, opts)
   end
 
+  @doc """
+  Get all cells which the supervisor is supervising.
+  Returns a list of PIDs.
+  """
   def get_living_cells do
     Cell.Supervisor
     |> Supervisor.which_children
