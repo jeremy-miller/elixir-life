@@ -1,47 +1,58 @@
 defmodule Cell do
-  @moduledoc false
+  @moduledoc """
+  Controls an individual cell.
+  """
 
   use GenServer
+
   import Enum, only: [filter: 2, map: 2]
 
+  # The offsets surrounding each cell.
   @neighbor_offsets [
     {-1, -1}, { 0, -1}, { 1, -1},
     {-1,  0},           { 1,  0},
     {-1,  1}, { 0,  1}, { 1,  1},
   ]
 
+  #############
   # API
+  #############
 
+  @doc """
+  Start a cell and register it in the Registry, using the `position` as its name.
+  """
   def start_link(position) do
-    GenServer.start_link(__MODULE__, position, name: {
-      :via, Registry, {Cell.Registry, position}
-    })
+    via_tuple = {:via, Registry, {Cell.Registry, position}}
+    GenServer.start_link(__MODULE__, position, name: via_tuple)
   end
 
+  @doc """
+  Start a new cell process at the given `position`.
+  """
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
   end
 
+  @doc """
+  Remove the given `cell` (position) process.
+  """
   def destroy(cell) do
     Supervisor.terminate_child(Cell.Supervisor, cell)
   end
 
+  @doc """
+  Tick the given `cell`.
+  """
   def tick(cell) do
     GenServer.call(cell, :tick)
   end
 
-  def count_neighbors(cell) do
-    GenServer.call(cell, :count_neighbors)
-  end
-
+  #############
   # Callbacks
+  #############
 
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
-  end
-
-  def handle_call(:count_living_neighbors, _from, position) do
-    {:reply, count_living_neighbors(position), position}
   end
 
   defp to_create(position) do
