@@ -48,7 +48,7 @@ defmodule LifeElixir do
   @doc """
   Returns list of PIDs of all living cells.
   """
-  defp get_cells, do: Cell.Supervisor.children
+  defp get_cells, do: Cell.Supervisor.get_living_cells
 
   @doc """
   Spawn a Task to call `tick` on each cell.

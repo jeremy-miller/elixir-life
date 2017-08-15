@@ -17,7 +17,7 @@ defmodule Cell.Supervisor do
     supervise(children, opts)
   end
 
-  def children do
+  def get_living_cells do
     Cell.Supervisor
     |> Supervisor.which_children
     |> map(fn {_, pid, _, _} -> pid end)
