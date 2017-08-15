@@ -30,7 +30,7 @@ defmodule LifeElixir do
   #############
 
   # Get all living cells and asynchronously call `tick` on each one.
-  # Wait for all cell ticks to finish.  Create new cells and destroy dead cells.
+  # Wait for all cell ticks to finish, then create new cells and destroy dead cells.
   def handle_call(:tick, _from, []) do
     get_cells()
     |> tick_cells
@@ -44,7 +44,7 @@ defmodule LifeElixir do
   defp get_cells, do: Cell.Supervisor.get_living_cells
 
   # Spawn a Task to call `tick` on each cell.
-  # Returns all spawned Tasks.
+  # Returns a list of all spawned Tasks.
   defp tick_cells(cells) do
     map(cells, &(Task.async(fn -> Cell.tick(&1) end)))
   end
