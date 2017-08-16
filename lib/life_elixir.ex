@@ -50,13 +50,14 @@ defmodule LifeElixir do
   end
 
   # Await all Tasks to finish their cell `ticks`.
-  # Each cell `tick` retuns `{[Cell positions to create], [Cell positions to destroy]}`
+  # Each cell `tick` retuns `{[cell positions to create], [cell positions to destroy]}`.
+  # `cell positions to destroy` is either the cell which just ticked, or an empty list.
   defp wait_for_ticks(asyncs) do
     map(asyncs, &Task.await/1)
   end
 
   # Consolidates all the returned cell positions into lists of positions to create and destroy.
-  # Returns `{[Cell positions to create], [Cell positions to destroy]}`.
+  # Returns `{[cell positions to create], [cell positions to destroy]}`.
   defp consolidate_cell_updates(ticks), do: reduce(ticks, {[], []}, &consolidate_ticks/2)
 
   defp consolidate_ticks({create, destroy}, {acc_create, acc_destroy}) do
