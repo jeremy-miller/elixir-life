@@ -10,3 +10,6 @@ This is a work in progress
 Tasks:
 - Phoenix
 - D3
+- Code profiling - https://github.com/parroty/exprof
+- Property-based testing - https://github.com/parroty/excheck
+- Exfmt - https://github.com/lpil/exfmt https://github.com/securingsincity/vscode-exfmt
