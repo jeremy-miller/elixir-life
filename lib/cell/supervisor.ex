@@ -5,10 +5,12 @@ defmodule Cell.Supervisor do
   
   import Enum, only: [map: 2]
 
+  @doc false
   def start_link do
     Supervisor.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @doc false
   def init(_) do
     children = [
       worker(Cell, [])
