@@ -2,7 +2,6 @@ defmodule Cell.Supervisor do
   @moduledoc false
   
   use Supervisor
-  
   import Enum, only: [map: 2]
 
   @doc false
