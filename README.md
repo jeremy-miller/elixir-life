@@ -7,7 +7,6 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 
 ## Tasks
 - Credo
-- Exfmt
 - Dialyzer
 - Tests
 - Travis
