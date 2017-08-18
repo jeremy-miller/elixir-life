@@ -4,7 +4,6 @@ defmodule Cell do
   """
 
   use GenServer
-
   import Enum, only: [filter: 2, map: 2]
 
   # The offsets surrounding each cell.
@@ -73,7 +72,9 @@ defmodule Cell do
   end
 
   # Filter out the `positions` which are not currently alive and return them.
-  defp get_dead_neighbors(positions), do: filter(positions, &(lookup(&1) == nil))
+  defp get_dead_neighbors(positions), do
+    filter(positions, &(lookup(&1) == nil))
+  end
 
   # Lookup `position` in the Cell Registry. If it's in the Registry, get the process's `pid`.
   # Make sure the cell with PID `pid` is alive, and if so, return it.
@@ -105,7 +106,9 @@ defmodule Cell do
   end
 
   # Returns a filtered list of all living positions within `positions`.
-  defp get_living_neighbors(positions), do: filter(positions, &(lookup(&1) != nil))
+  defp get_living_neighbors(positions), do
+    filter(positions, &(lookup(&1) != nil))
+  end
 
   # Get the living neighbors of `position`.  If there are exactly 2 or 3, this `position`
   # lives, otherwise it will be destroyed.

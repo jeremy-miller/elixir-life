@@ -4,7 +4,6 @@ defmodule LifeElixir do
   """
 
   use GenServer
-
   import Enum, only: [map: 2, reduce: 3]
 
   #############
@@ -41,7 +40,9 @@ defmodule LifeElixir do
   end
 
   # Returns list of PIDs of all living cells.
-  defp get_cells, do: Cell.Supervisor.get_living_cells
+  defp get_cells, do
+    Cell.Supervisor.get_living_cells
+  end
 
   # Spawn a Task to call `tick` on each cell.
   # Returns a list of all spawned Tasks.
@@ -58,7 +59,9 @@ defmodule LifeElixir do
 
   # Consolidates all the returned cell positions into lists of positions to create and destroy.
   # Returns `{[cell positions to create], [cell positions to destroy]}`.
-  defp consolidate_cell_updates(ticks), do: reduce(ticks, {[], []}, &consolidate_ticks/2)
+  defp consolidate_cell_updates(ticks), do
+    reduce(ticks, {[], []}, &consolidate_ticks/2)
+  end
 
   defp consolidate_ticks({create, destroy}, {acc_create, acc_destroy}) do
     {acc_create ++ create, acc_destroy ++ destroy}
