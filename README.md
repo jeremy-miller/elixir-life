@@ -18,15 +18,15 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
-* [Motivation](#motivation)
-* [Usage](#usage)
-  + [Prerequisites](#prerequisites)
-  + [Build](#build)
-  + [Code Formatting](#code-formatting)
-  + [Static Code Analysis](#static-code-analysis)
-  + [Test](#test)
-  + [Run](#run)
-* [License](#license)
+- [Motivation](#motivation)
+- [Usage](#usage)
+  - [Prerequisites](#prerequisites)
+  - [Build](#build)
+  - [Code Formatting](#code-formatting)
+  - [Static Code Analysis](#static-code-analysis)
+  - [Test](#test)
+  - [Run](#run)
+- [License](#license)
 </details>
 
 ## Motivation
