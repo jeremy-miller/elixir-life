@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/jeremy-miller/life-elixir.svg?branch=master)](https://travis-ci.org/jeremy-miller/life-elixir)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeremy-miller/portals/blob/master/LICENSE)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)
 [![Elixir Version](https://img.shields.io/badge/Elixir-1.4-blue.svg)]()
 
 # Life (in Elixir)
@@ -57,7 +57,7 @@ To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analy
 *NOTE: The first time this command is run it may take a long time since it needs to create the PLT (see [here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
 
 ### Test
-To run the Portal tests, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix test```
+To run the Life tests, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix test```
 
 ### Run
 To compile the Life application and run the *iex* REPL, execute the following command: ```docker run -it --rm jeremymiller/life-elixir```
