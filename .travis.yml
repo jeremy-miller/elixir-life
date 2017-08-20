@@ -8,4 +8,4 @@ script:
   - docker run -it --rm jeremymiller/life-elixir mix credo
   - docker run -it --rm jeremymiller/life-elixir mix test
 after_script:
-  - docker run -it --rm jeremymiller/life-elixir --env MIX_ENV=docs mix inch.report --pedantic
+  - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
