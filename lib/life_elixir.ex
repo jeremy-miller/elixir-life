@@ -40,7 +40,7 @@ defmodule LifeElixir do
   end
 
   # Returns list of PIDs of all living cells.
-  defp get_cells, do
+  defp get_cells do
     Cell.Supervisor.get_living_cells
   end
 
@@ -59,7 +59,7 @@ defmodule LifeElixir do
 
   # Consolidates all the returned cell positions into lists of positions to create and destroy.
   # Returns `{[cell positions to create], [cell positions to destroy]}`.
-  defp consolidate_cell_updates(ticks), do
+  defp consolidate_cell_updates(ticks) do
     reduce(ticks, {[], []}, &consolidate_ticks/2)
   end
 

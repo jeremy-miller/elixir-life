@@ -6,9 +6,11 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
-- Credo
 - Dialyzer
 - Tests
+  - https://github.com/whatyouhide/stream_data
+  - https://github.com/parroty/excheck
+  - https://github.com/pragdave/quixir
 - Travis
 - Code coverage
 - Docker

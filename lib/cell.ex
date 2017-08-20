@@ -7,6 +7,7 @@ defmodule Cell do
   import Enum, only: [filter: 2, map: 2]
 
   # The offsets surrounding each cell.
+  # credo:disable-for-lines:4
   @neighbor_offsets [
     {-1, -1}, { 0, -1}, { 1, -1},
     {-1,  0},           { 1,  0},
@@ -65,14 +66,14 @@ defmodule Cell do
     |> get_positions_to_create
   end
 
-  # Get all `{x, y}` coordinates of neighboring cells based on the input `{x, y}` and return them. 
+  # Get all `{x, y}` coordinates of neighboring cells based on the input `{x, y}` and return them.
   defp get_neighboring_positions({x, y}) do
      @neighbor_offsets
      |> map(fn {dx, dy} -> {x + dx, y + dy} end)
   end
 
   # Filter out the `positions` which are not currently alive and return them.
-  defp get_dead_neighbors(positions), do
+  defp get_dead_neighbors(positions) do
     filter(positions, &(lookup(&1) == nil))
   end
 
@@ -106,7 +107,7 @@ defmodule Cell do
   end
 
   # Returns a filtered list of all living positions within `positions`.
-  defp get_living_neighbors(positions), do
+  defp get_living_neighbors(positions) do
     filter(positions, &(lookup(&1) != nil))
   end
 
