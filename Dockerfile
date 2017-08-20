@@ -1,4 +1,4 @@
-FROM elixir:1.4
+FROM elixir:1.5
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY mix.exs /usr/src/app
