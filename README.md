@@ -25,6 +25,7 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
   - [Prerequisites](#prerequisites)
   - [Build](#build)
   - [Code Formatting](#code-formatting)
+  - [Dependencies](#dependencies)
   - [Static Code Analysis](#static-code-analysis)
   - [Test](#test)
   - [Run](#run)
@@ -49,6 +50,9 @@ Before interacting with the Life game, the Docker container must be built: ```do
 
 ### Code Formatting
 To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the following command (substituting a file path): ```docker run -it --rm jeremymiller/life-elixir mix exfmt <path to file>```
+
+### Dependencies
+To check for outdated dependencies, execute the following command: ```mix hex.outdated```
 
 ### Static Code Analysis
 To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix credo --static```
