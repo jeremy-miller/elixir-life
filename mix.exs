@@ -30,9 +30,9 @@ defmodule LifeElixir.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
-      {:exfmt, "~> 0.4", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.8", only: [:dev], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:exfmt, "~> 0.4", only: [:dev], runtime: false}
     ]
   end
 end
