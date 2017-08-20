@@ -59,6 +59,8 @@ To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analy
 ### Test
 To run the Life tests, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix test```
 
+To run the Life tests automatically during local development, execute the following command: ```mix test.watch```
+
 ### Run
 To compile the Life application and run the *iex* REPL, execute the following command: ```docker run -it --rm jeremymiller/life-elixir```
 
