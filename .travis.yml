@@ -12,8 +12,7 @@ before_script:
   # Set download location
   - export PLT_FILENAME=elixir-${TRAVIS_ELIXIR_VERSION}_${TRAVIS_OTP_RELEASE}.plt
   - export PLT_LOCATION=/home/travis/$PLT_FILENAME
-  # Download PLT from danielberkompas/travis_elixir_plts on Github
-  # Store in $PLT_LOCATION
+  # Download PLT from danielberkompas/travis_elixir_plts on Github, store in $PLT_LOCATION
   - wget -O $PLT_LOCATION https://raw.github.com/danielberkompas/travis_elixir_plts/master/$PLT_FILENAME
 script:
   - docker run -it --rm jeremymiller/life-elixir mix hex.outdated
