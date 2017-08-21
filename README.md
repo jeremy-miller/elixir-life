@@ -50,24 +50,24 @@ This implementation uses a Docker container to isolate the execution environment
 Before interacting with the Life game, the Docker container must be built: ```docker build -t jeremymiller/life-elixir .```
 
 ### Code Formatting
-To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the following command (substituting a file path): ```docker run -it --rm jeremymiller/life-elixir mix exfmt <path to file>```
+To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the following command (substituting a file path): ```docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix exfmt <path to file>```
 
 ### Dependencies
 To check for outdated dependencies, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix hex.outdated```
 
 ### Static Code Analysis
-To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix credo --strict```
+To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execute the following command: ```docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix credo --strict```
 
-To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix dialyzer```
+To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analyzer, execute the following command: ```docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix dialyzer```
 *NOTE: The first time this command is run it may take a long time since it needs to create the PLT (see [here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
 
 ### Test
-To run the Life tests, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix test```
+To run the Life tests, execute the following command: ```docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix test```
 
 To run the Life tests automatically on save during local development, execute the following command: ```mix test.watch```
 
 ### Run
-To compile the Life application and run the *iex* REPL, execute the following command: ```docker run -it --rm jeremymiller/life-elixir```
+To compile the Life application and run the *iex* REPL, execute the following command: ```docker run -it --rm --env MIX_ENV=prod jeremymiller/life-elixir```
 
 ## License
 [MIT](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)
