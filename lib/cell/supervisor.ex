@@ -10,6 +10,7 @@ defmodule Cell.Supervisor do
   end
 
   @doc false
+  @spec init(any) :: no_return
   def init(_) do
     children = [
       worker(Cell, [])
@@ -22,6 +23,7 @@ defmodule Cell.Supervisor do
   Get all cells which the supervisor is supervising.
   Returns a list of PIDs.
   """
+  @spec get_living_cells :: [pid]
   def get_living_cells do
     Cell.Supervisor
     |> Supervisor.which_children
