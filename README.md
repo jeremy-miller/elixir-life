@@ -10,6 +10,8 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 ## Tasks
 - Dialyzer
 - Tests
+  - ExUnit
+  - Doctests
   - https://github.com/whatyouhide/stream_data
   - https://github.com/parroty/excheck
   - https://github.com/pragdave/quixir
