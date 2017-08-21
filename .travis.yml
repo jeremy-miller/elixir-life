@@ -15,6 +15,6 @@ script:
   - docker run -it --rm jeremymiller/life-elixir mix hex.outdated
   - docker run -it --rm jeremymiller/life-elixir mix credo
   - docker run -it --rm jeremymiller/life-elixir mix test
-  - dialyzer --no_check_plt --plt $PLT_LOCATION --no_native _build/test/lib/life_elixir/ebin
+  - docker run -it --rm jeremymiller/life-elixir mix dialyzer --no_check_plt --plt $PLT_LOCATION --no_native _build/test/lib/life_elixir/ebin
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
