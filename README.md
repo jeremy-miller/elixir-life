@@ -57,7 +57,7 @@ To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the fo
 To check for outdated dependencies, execute the following command: ```mix hex.outdated```
 
 ### Static Code Analysis
-To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix credo --static```
+To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix credo --strict```
 
 To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analyzer, execute the following command: ```docker run -it --rm jeremymiller/life-elixir mix dialyzer```
 *NOTE: The first time this command is run it may take a long time since it needs to create the PLT (see [here](https://github.com/jeremyjh/dialyxir#usage) for more information).*

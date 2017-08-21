@@ -5,7 +5,7 @@ before_install:
   - docker build -t jeremymiller/life-elixir .
 script:
   - docker run -it --rm jeremymiller/life-elixir mix hex.outdated
-  - docker run -it --rm jeremymiller/life-elixir mix credo
+  - docker run -it --rm jeremymiller/life-elixir mix credo --strict
   - docker run -it --rm jeremymiller/life-elixir mix test
   - docker run -it --rm jeremymiller/life-elixir mix dialyzer --no_check_plt --plt $PLT_LOCATION --no_native _build/test/lib/life_elixir/ebin
 after_success:
