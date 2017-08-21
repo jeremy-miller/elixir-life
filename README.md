@@ -12,8 +12,7 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 - Tests
   - ExUnit
   - Doctests
-  - https://github.com/whatyouhide/stream_data
-  - https://github.com/pragdave/quixir
+  - Quixir (https://github.com/pragdave/quixir)
 - Code coverage
 - Phoenix
 - D3
