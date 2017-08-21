@@ -4,6 +4,7 @@ services:
 before_install:
   - docker build -t jeremymiller/life-elixir .
 script:
+  - docker run -it --rm jeremymiller/life-elixir echo $PLT_LOCATION
   - docker run -it --rm jeremymiller/life-elixir mix hex.outdated
   - docker run -it --rm jeremymiller/life-elixir mix credo --strict
   - docker run -it --rm jeremymiller/life-elixir mix test
