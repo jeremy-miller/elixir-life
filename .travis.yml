@@ -19,6 +19,7 @@ script:
   - docker run -it --rm jeremymiller/life-elixir mix credo --strict
   - docker run -it --rm jeremymiller/life-elixir mix test
   - mix compile
+  - echo $MIX_ENV
   - ls -la .
   - ls -la _build
   - ls -la _build/test
