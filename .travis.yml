@@ -5,6 +5,8 @@ before_install:
   - docker build -t jeremymiller/life-elixir .
 before_script:
   # Set PLT download location
+  - echo $TRAVIS_ELIXIR_VERSION
+  - echo $TRAVIS_OTP_RELEASE
   - export PLT_FILENAME=elixir-${TRAVIS_ELIXIR_VERSION}_${TRAVIS_OTP_RELEASE}.plt
   - export PLT_LOCATION=/home/travis/$PLT_FILENAME
   # Download PLT from danielberkompas/travis_elixir_plts on Github, store in $PLT_LOCATION
