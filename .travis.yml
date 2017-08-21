@@ -19,6 +19,12 @@ script:
   - docker run -it --rm jeremymiller/life-elixir mix credo --strict
   - docker run -it --rm jeremymiller/life-elixir mix test
   - mix compile
+  - ls -la .
+  - ls -la _build
+  - ls -la _build/test
+  - ls -la _build/test/lib
+  - ls -la _build/test/lib/life_elixir
+  - ls -la _build/test/lib/life_elixir/ebin
   - dialyzer --no_check_plt --plt $PLT_LOCATION --no_native _build/test/lib/life_elixir/ebin
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
