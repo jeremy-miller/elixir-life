@@ -17,8 +17,8 @@ before_script:
   # Download PLT from danielberkompas/travis_elixir_plts on Github, store in $PLT_LOCATION
   - wget -O $PLT_LOCATION https://raw.github.com/danielberkompas/travis_elixir_plts/master/$PLT_FILENAME
 script:
-  - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix hex.outdated
-  - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix credo --strict
+  - docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix hex.outdated
+  - docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix credo --strict
   - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix test
   # Execute dialyzer on local Travis system
   - mix compile
