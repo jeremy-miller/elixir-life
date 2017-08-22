@@ -70,6 +70,7 @@ defmodule Cell do
 
   # Get the neighboring positions of `position`, filter out the dead neighbors,
   # then get the cell positions which should be created and return them.
+  @spec to_create(position) :: [position]
   defp to_create(position) do
     position
     |> get_neighboring_positions
@@ -78,12 +79,14 @@ defmodule Cell do
   end
 
   # Get all `{x, y}` coordinates of neighboring cells based on the input `{x, y}` and return them.
+  @spec get_neighboring_positions(position) :: [position]
   defp get_neighboring_positions({x, y}) do
      @neighbor_offsets
      |> map(fn {dx, dy} -> {x + dx, y + dy} end)
   end
 
   # Filter out the `positions` which are not currently alive and return them.
+  @spec get_dead_neighbors([position]) :: [position]
   defp get_dead_neighbors(positions) do
     filter(positions, &(lookup(&1) == nil))
   end
@@ -92,6 +95,7 @@ defmodule Cell do
   # Make sure the cell with PID `pid` is alive, and if so, return it.
   # Filter out `alive` processes since `terminate_child` will remove the cell from the Supervisor,
   # but it may not be fully removed from the Registry yet.
+  @spec lookup(position) :: pid | nil
   defp lookup(position) do
     Cell.Registry
     |> Registry.lookup(position)
@@ -104,11 +108,13 @@ defmodule Cell do
   end
 
   # Filter out `positions` and return ones should be created (i.e. have 3 living neighbors).
+  @spec get_positions_to_create([position]) :: [position]
   defp get_positions_to_create(positions) do
     filter(positions, &(count_living_neighbors(&1) == 3))
   end
 
   # Get the neighbors of `position`, filter out living neighbors, and return the count.
+  @spec count_living_neighbors(position) :: integer
   defp count_living_neighbors(position) do
     position
     |> get_neighboring_positions
@@ -117,6 +123,7 @@ defmodule Cell do
   end
 
   # Returns a filtered list of all living positions within `positions`.
+  @spec get_living_neighbors([position]) :: [position]
   defp get_living_neighbors(positions) do
     filter(positions, &(lookup(&1) != nil))
   end
@@ -124,6 +131,7 @@ defmodule Cell do
   # Get the living neighbors of `position`.  If there are exactly 2 or 3, this `position`
   # lives, otherwise it will be destroyed.
   # Returns itself if it should be destroyed, otherwise returns an empty list.
+  @spec to_destroy(position) :: [] | [pid]
   defp to_destroy(position) do
     position
     |> count_living_neighbors
