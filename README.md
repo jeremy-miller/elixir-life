@@ -8,6 +8,14 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
+- Fix readme (markdownlint)
+- Move Dialyzer inside Docker, update Dockerfile
+- Add note for type re: x and y
+- Remove private function docs (inline "why" comments), improve public function docs
+- Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
+- Push to/pull from Dockerhub
+- Deploy to AWS/etc?
+- Add other linters to CI/CD process (markdownlint, dockerfile lint, etc)
 - Dialyzer
 - Tests
   - ExUnit
@@ -16,6 +24,7 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 - Code coverage
 - Phoenix
 - D3
+- Dropdown selection for which type of pattern to use
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
