@@ -21,6 +21,7 @@ defmodule Cell do
   @doc """
   Start a cell and register it in the Registry, using the `position` as its name.
   """
+  @spec start_link({int, int}) :: on_start
   def start_link(position) do
     via_tuple = {:via, Registry, {Cell.Registry, position}}
     GenServer.start_link(__MODULE__, position, name: via_tuple)
@@ -30,6 +31,7 @@ defmodule Cell do
   Start a new `cell` child process in the supervisor, passing `position` as its initial state.
   Will call `start_link` above.
   """
+  @spec create({int, int}) :: on_start_child
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
   end
@@ -60,7 +62,8 @@ defmodule Cell do
   # Get the neighboring positions of `position`, filter out the dead neighbors,
   # then get the cell positions which should be created and return them.
   defp to_create(position) do
-    get_neighboring_positions(position)
+    position
+    |> get_neighboring_positions
     |> get_dead_neighbors
     |> get_positions_to_create
   end
@@ -98,7 +101,8 @@ defmodule Cell do
 
   # Get the neighbors of `position`, filter out living neighbors, and return the count.
   defp count_living_neighbors(position) do
-    get_neighboring_positions(position)
+    position
+    |> get_neighboring_positions
     |> get_living_neighbors
     |> length
   end
@@ -112,7 +116,8 @@ defmodule Cell do
   # lives, otherwise it will be destroyed.
   # Returns itself if it should be destroyed, otherwise returns an empty list.
   defp to_destroy(position) do
-    count_living_neighbors(position)
+    position
+    |> count_living_neighbors
     |> case do
       2 -> []
       3 -> []
