@@ -4,6 +4,7 @@ defmodule LifeElixir.Application do
   use Application
 
   @doc false
+  @spec start(atom, list) :: {:ok, pid}
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 

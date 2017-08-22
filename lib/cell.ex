@@ -6,6 +6,11 @@ defmodule Cell do
   use GenServer
   import Enum, only: [filter: 2, map: 2]
 
+  @typedoc """
+  A cell's position within the Game of Life board.
+  """
+  @type position :: {integer, integer}
+
   # The offsets surrounding each cell.
   # credo:disable-for-lines:4
   @neighbor_offsets [
@@ -21,7 +26,7 @@ defmodule Cell do
   @doc """
   Start a cell and register it in the Registry, using the `position` as its name.
   """
-  @spec start_link({int, int}) :: on_start
+  @spec start_link(position) :: {:ok, pid} | {:error, {:already_started, pid}}
   def start_link(position) do
     via_tuple = {:via, Registry, {Cell.Registry, position}}
     GenServer.start_link(__MODULE__, position, name: via_tuple)
@@ -31,7 +36,7 @@ defmodule Cell do
   Start a new `cell` child process in the supervisor, passing `position` as its initial state.
   Will call `start_link` above.
   """
-  @spec create({int, int}) :: on_start_child
+  @spec create(position) :: {:ok, pid} | {:error, String.t}
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
   end
@@ -39,6 +44,7 @@ defmodule Cell do
   @doc """
   Remove the given `cell` (position) process.
   """
+  @spec destroy(position) :: :ok | {:error, String.t}
   def destroy(cell) do
     Supervisor.terminate_child(Cell.Supervisor, cell)
   end
@@ -46,6 +52,8 @@ defmodule Cell do
   @doc """
   Tick the given `cell`.
   """
+  #@spec tick(position) :: term
+  @spec tick(atom | pid | {atom, any} | {String.t, atom(), any}) :: any
   def tick(cell) do
     GenServer.call(cell, :tick)
   end
@@ -55,6 +63,7 @@ defmodule Cell do
   #############
 
   # Calculate neighboring cells to create, and whether the current cell should die.
+  @callback handle_call(atom, {pid, term}, position) :: {atom, {[pid], [pid]}, position}
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
   end
