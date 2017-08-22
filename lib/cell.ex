@@ -60,8 +60,7 @@ defmodule Cell do
   # Get the neighboring positions of `position`, filter out the dead neighbors,
   # then get the cell positions which should be created and return them.
   defp to_create(position) do
-    position
-    |> get_neighboring_positions
+    get_neighboring_positions(position)
     |> get_dead_neighbors
     |> get_positions_to_create
   end
@@ -94,14 +93,12 @@ defmodule Cell do
 
   # Filter out `positions` and return ones should be created (i.e. have 3 living neighbors).
   defp get_positions_to_create(positions) do
-    positions
-    |> filter(&(count_living_neighbors(&1) == 3))
+    filter(positions, &(count_living_neighbors(&1) == 3))
   end
 
   # Get the neighbors of `position`, filter out living neighbors, and return the count.
   defp count_living_neighbors(position) do
-    position
-    |> get_neighboring_positions
+    get_neighboring_positions(position)
     |> get_living_neighbors
     |> length
   end
@@ -115,8 +112,7 @@ defmodule Cell do
   # lives, otherwise it will be destroyed.
   # Returns itself if it should be destroyed, otherwise returns an empty list.
   defp to_destroy(position) do
-    position
-    |> count_living_neighbors
+    count_living_neighbors(position)
     |> case do
       2 -> []
       3 -> []
