@@ -9,6 +9,9 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 blog.
 
 ## Tasks
+- GenServer vs Agent for cells
+- Echo versions in Travis config
+- Add badge for Erlang/OTP version
 - Tests
   - ExUnit
   - Doctests
