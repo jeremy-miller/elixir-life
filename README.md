@@ -17,9 +17,10 @@ blog.
   - Doctests
   - Quixir
 - Code coverage
+- Docker pull node-lint image and lint (in readme, Travis build)
 - Move Dialyzer inside Docker, update Dockerfile
 - Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
-- Push to/pull from Dockerhub
+- Push to/pull from Dockerhub?
 - Deploy to AWS/etc? Terraform? Ansible?
 - Phoenix
 - D3
