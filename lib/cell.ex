@@ -7,7 +7,7 @@ defmodule Cell do
   import Enum, only: [filter: 2, map: 2]
 
   @typedoc """
-  A cell's position within the Game of Life board.
+  A cell's `x` and `y` position within the Game of Life board.
   """
   @type position :: {integer, integer}
 
