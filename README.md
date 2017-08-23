@@ -9,15 +9,15 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 blog.
 
 ## Tasks
-- Move Dialyzer inside Docker, update Dockerfile
-- Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
-- Push to/pull from Dockerhub
-- Deploy to AWS/etc? Terraform? Ansible?
 - Tests
   - ExUnit
   - Doctests
   - Quixir
 - Code coverage
+- Move Dialyzer inside Docker, update Dockerfile
+- Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
+- Push to/pull from Dockerhub
+- Deploy to AWS/etc? Terraform? Ansible?
 - Phoenix
 - D3
 - Dropdown selection for which type of pattern to use
