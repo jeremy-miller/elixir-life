@@ -11,7 +11,6 @@ defmodule Cell do
   """
   @type position :: {integer, integer}
 
-  # The offsets surrounding each cell.
   # credo:disable-for-lines:4
   @neighbor_offsets [
     {-1, -1}, { 0, -1}, { 1, -1},
@@ -34,7 +33,7 @@ defmodule Cell do
 
   @doc """
   Start a new `cell` child process in the supervisor, passing `position` as its initial state.
-  Will call `start_link` above.
+  Will call `Cell.start_link/1`.
   """
   @spec create(position) :: {:ok, pid} | {:error, String.t}
   def create(position) do
@@ -42,7 +41,7 @@ defmodule Cell do
   end
 
   @doc """
-  Remove the given `cell` (position) process.
+  Remove the given `cell` process (at some `x` and `y` position).
   """
   @spec destroy(position) :: :ok | {:error, String.t}
   def destroy(cell) do
@@ -50,9 +49,9 @@ defmodule Cell do
   end
 
   @doc """
-  Tick the given `cell`.
+  Tick the given `cell`.  A tick involves calculating which neighboring cells of `cell`
+  need to be created, as well as if the `cell` should die.
   """
-  #@spec tick(position) :: term
   @spec tick(atom | pid | {atom, any} | {String.t, atom(), any}) :: any
   def tick(cell) do
     GenServer.call(cell, :tick)
@@ -62,14 +61,11 @@ defmodule Cell do
   # Callbacks
   #############
 
-  # Calculate neighboring cells to create, and whether the current cell should die.
   @callback handle_call(atom, {pid, term}, position) :: {atom, {[pid], [pid]}, position}
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
   end
 
-  # Get the neighboring positions of `position`, filter out the dead neighbors,
-  # then get the cell positions which should be created and return them.
   @spec to_create(position) :: [position]
   defp to_create(position) do
     position
@@ -78,23 +74,17 @@ defmodule Cell do
     |> get_positions_to_create
   end
 
-  # Get all `{x, y}` coordinates of neighboring cells based on the input `{x, y}` and return them.
   @spec get_neighboring_positions(position) :: [position]
   defp get_neighboring_positions({x, y}) do
      @neighbor_offsets
      |> map(fn {dx, dy} -> {x + dx, y + dy} end)
   end
 
-  # Filter out the `positions` which are not currently alive and return them.
   @spec get_dead_neighbors([position]) :: [position]
   defp get_dead_neighbors(positions) do
     filter(positions, &(lookup(&1) == nil))
   end
 
-  # Lookup `position` in the Cell Registry. If it's in the Registry, get the process's `pid`.
-  # Make sure the cell with PID `pid` is alive, and if so, return it.
-  # Filter out `alive` processes since `terminate_child` will remove the cell from the Supervisor,
-  # but it may not be fully removed from the Registry yet.
   @spec lookup(position) :: pid | nil
   defp lookup(position) do
     Cell.Registry
@@ -103,17 +93,15 @@ defmodule Cell do
       {pid, _value} -> pid
       nil -> nil
     end)
-    |> filter(&Process.alive?/1)
+    |> filter(&Process.alive?/1)  # make sure we disregard cells which have been removed from the Supervisor, but not from the Registry yet
     |> List.first
   end
 
-  # Filter out `positions` and return ones should be created (i.e. have 3 living neighbors).
   @spec get_positions_to_create([position]) :: [position]
   defp get_positions_to_create(positions) do
     filter(positions, &(count_living_neighbors(&1) == 3))
   end
 
-  # Get the neighbors of `position`, filter out living neighbors, and return the count.
   @spec count_living_neighbors(position) :: integer
   defp count_living_neighbors(position) do
     position
@@ -122,15 +110,11 @@ defmodule Cell do
     |> length
   end
 
-  # Returns a filtered list of all living positions within `positions`.
   @spec get_living_neighbors([position]) :: [position]
   defp get_living_neighbors(positions) do
     filter(positions, &(lookup(&1) != nil))
   end
 
-  # Get the living neighbors of `position`.  If there are exactly 2 or 3, this `position`
-  # lives, otherwise it will be destroyed.
-  # Returns itself if it should be destroyed, otherwise returns an empty list.
   @spec to_destroy(position) :: [] | [pid]
   defp to_destroy(position) do
     position
