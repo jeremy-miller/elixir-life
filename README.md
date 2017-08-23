@@ -11,7 +11,6 @@ blog.
 
 ## Tasks
 - Move Dialyzer inside Docker, update Dockerfile
-- Add note for type re: x and y
 - Remove private function docs (inline "why" comments), improve public function docs
 - Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
 - Push to/pull from Dockerhub
