@@ -13,7 +13,6 @@ blog.
 - Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
 - Push to/pull from Dockerhub
 - Deploy to AWS/etc? Terraform? Ansible?
-- Dialyzer
 - Tests
   - ExUnit
   - Doctests
