@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/jeremy-miller/life-elixir.svg?branch=master)](https://travis-ci.org/jeremy-miller/life-elixir)
 [![Inline docs](http://inch-ci.org/github/jeremy-miller/life-elixir.svg)](http://inch-ci.org/github/jeremy-miller/life-elixir)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)
-<!-- markdownlint-disable MD042 -->
 [![Elixir Version](https://img.shields.io/badge/Elixir-1.4-blue.svg)]()
 
 # Life (in Elixir)
