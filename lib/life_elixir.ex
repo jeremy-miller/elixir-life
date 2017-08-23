@@ -6,6 +6,11 @@ defmodule LifeElixir do
   use GenServer
   import Enum, only: [map: 2, reduce: 3]
 
+  @typedoc """
+  A cell's `x` and `y` position within the Game of Life board.
+  """
+  @type position :: {integer, integer}
+
   #############
   # API
   #############
@@ -13,6 +18,7 @@ defmodule LifeElixir do
   @doc """
   Start the `LifeElixir` GenServer.
   """
+  @spec start_link :: {:ok, pid} | {:error, {:already_started, pid}}
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
@@ -20,6 +26,7 @@ defmodule LifeElixir do
   @doc """
   `Tick` the Game of Life simulation once.  Calls `Cell.tick/1` on each living cell.
   """
+  @spec tick :: :ok
   def tick do
     GenServer.call(__MODULE__, :tick)
   end
@@ -28,6 +35,7 @@ defmodule LifeElixir do
   # Callbacks
   #############
 
+  @callback handle_call(atom, {pid, term}, list) :: :ok
   def handle_call(:tick, _from, []) do
     get_cells()
     |> tick_cells
@@ -37,26 +45,32 @@ defmodule LifeElixir do
     {:reply, :ok, []}
   end
 
+  @spec get_cells :: [pid]
   defp get_cells do
     Cell.Supervisor.get_living_cells
   end
 
+  @spec tick_cells([pid]) :: list
   defp tick_cells(cells) do
     map(cells, &(Task.async(fn -> Cell.tick(&1) end)))
   end
 
+  @spec wait_for_ticks(list) :: list
   defp wait_for_ticks(asyncs) do
     map(asyncs, &Task.await/1)
   end
 
+  @spec consolidate_cell_updates(list) :: {[position], [position]}
   defp consolidate_cell_updates(ticks) do
     reduce(ticks, {[], []}, &consolidate_ticks/2)
   end
 
+  @spec consolidate_ticks({[position], [position]}, {[position], [position]}) :: {[position], [position]}
   defp consolidate_ticks({create, destroy}, {acc_create, acc_destroy}) do
     {acc_create ++ create, acc_destroy ++ destroy}
   end
 
+  @spec update_cells({[position], [position]}) :: list
   defp update_cells({to_create, to_destroy}) do
     map(to_create, &Cell.create/1)
     map(to_destroy, &Cell.destroy/1)

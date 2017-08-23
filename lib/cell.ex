@@ -61,7 +61,7 @@ defmodule Cell do
   # Callbacks
   #############
 
-  @callback handle_call(atom, {pid, term}, position) :: {atom, {[pid], [pid]}, position}
+  @callback handle_call(atom, {pid, term}, position) :: {:reply, {[pid], [pid]}, position}
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
   end
