@@ -2,6 +2,7 @@ _build/
 deps/
 docs/
 .gitignore
+.markdownlint.json
 .travis.yml
 LICENSE
 README.md
