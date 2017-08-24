@@ -10,6 +10,12 @@ This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-th
 blog.
 
 ## Tasks
+- Use structs? With required fields
+- Get dependencies: mix deps.get
+- Compile mix dependencies in Dockerfile: mix deps.compile
+- Compile project in Dockerfile: mix compile
+- Need to do mix clean?
+- Need to do mix deps.compile? or will mix.compile do this?
 - Docker pull node-lint image and lint (in readme, Travis build)
 - Move Dialyzer inside Docker, update Dockerfile
 - Move test.watch to Docker container with volume, add inotify-tools to Dockerfile

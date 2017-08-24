@@ -4,6 +4,8 @@ defmodule Cell.Supervisor do
   use Supervisor
   import Enum, only: [map: 2]
 
+  @typep cells :: [pid]
+
   @doc false
   @spec start_link :: {:ok, pid}
   def start_link do
@@ -24,7 +26,7 @@ defmodule Cell.Supervisor do
   Get all cells which the supervisor is supervising.
   Returns a list of PIDs.
   """
-  @spec get_living_cells :: [pid]
+  @spec get_living_cells :: cells
   def get_living_cells do
     Cell.Supervisor
     |> Supervisor.which_children

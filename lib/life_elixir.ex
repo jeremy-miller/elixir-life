@@ -6,10 +6,12 @@ defmodule LifeElixir do
   use GenServer
   import Enum, only: [map: 2, reduce: 3]
 
-  @typedoc """
-  A cell's `x` and `y` position within the Game of Life board.
-  """
-  @type position :: {integer, integer}
+  # A cell's `x` and `y` position within the Game of Life board.
+  @typep position :: {integer, integer}
+
+  @typep positions :: [position]
+
+  @typep cells :: [pid]
 
   #############
   # API
@@ -35,7 +37,7 @@ defmodule LifeElixir do
   # Callbacks
   #############
 
-  @callback handle_call(atom, {pid, term}, list) :: :ok
+  @spec handle_call(:tick, any, []) :: {:reply, :ok, []}
   def handle_call(:tick, _from, []) do
     get_cells()
     |> tick_cells
@@ -45,12 +47,12 @@ defmodule LifeElixir do
     {:reply, :ok, []}
   end
 
-  @spec get_cells :: [pid]
+  @spec get_cells :: cells
   defp get_cells do
     Cell.Supervisor.get_living_cells
   end
 
-  @spec tick_cells([pid]) :: list
+  @spec tick_cells(cells) :: list
   defp tick_cells(cells) do
     map(cells, &(Task.async(fn -> Cell.tick(&1) end)))
   end
@@ -60,17 +62,17 @@ defmodule LifeElixir do
     map(asyncs, &Task.await/1)
   end
 
-  @spec consolidate_cell_updates(list) :: {[position], [position]}
+  @spec consolidate_cell_updates(list) :: {positions, positions}
   defp consolidate_cell_updates(ticks) do
     reduce(ticks, {[], []}, &consolidate_ticks/2)
   end
 
-  @spec consolidate_ticks({[position], [position]}, {[position], [position]}) :: {[position], [position]}
+  @spec consolidate_ticks({positions, positions}, {[], []}) :: {positions, positions}
   defp consolidate_ticks({create, destroy}, {acc_create, acc_destroy}) do
     {acc_create ++ create, acc_destroy ++ destroy}
   end
 
-  @spec update_cells({[position], [position]}) :: list
+  @spec update_cells({positions, positions}) :: list
   defp update_cells({to_create, to_destroy}) do
     map(to_create, &Cell.create/1)
     map(to_destroy, &Cell.destroy/1)
