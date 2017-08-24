@@ -1,27 +1,14 @@
 sudo: required
-language: elixir
-elixir:
-  - 1.4.5
-otp_release:
-  - 19.3
-env:
-  - MIX_ENV=test
 services:
   - docker
 before_install:
   - docker build -t jeremymiller/life-elixir .
 before_script:
-  # Set download location
-  - export PLT_FILENAME=elixir-${TRAVIS_ELIXIR_VERSION}_${TRAVIS_OTP_RELEASE}.plt
-  - export PLT_LOCATION=/home/travis/$PLT_FILENAME
-  # Download PLT from danielberkompas/travis_elixir_plts on Github, store in $PLT_LOCATION
-  - wget -O $PLT_LOCATION https://raw.github.com/danielberkompas/travis_elixir_plts/master/$PLT_FILENAME
+  - docker run -it --rm --env jeremymiller/life-elixir elixir --version
 script:
   - docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix hex.outdated
   - docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix credo --strict
+  - docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix dialyzer --no-compile --no-check --halt-exit-status
   - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix test
-  # Execute dialyzer on local Travis system
-  - mix compile
-  - dialyzer --no_check_plt --plt $PLT_LOCATION --no_native _build/test/lib/life_elixir/ebin
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic

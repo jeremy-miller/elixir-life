@@ -5,20 +5,12 @@
 [![Erlang/OTP Version](https://img.shields.io/badge/Erlang%2FOTP-19.3-blue.svg)]()
 
 # Life (in Elixir)
-Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
-This project is based on [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/)
-blog.
+Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), based on
+[this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
-- Get dependencies: mix deps.get
-- Compile mix dependencies in Dockerfile: mix deps.compile
-- Compile project in Dockerfile: mix compile
-- Need to do mix clean?
-- Need to do mix deps.compile? or will mix.compile do this?
-- Docker pull node-lint image and lint (in readme, Travis build)
-- Move Dialyzer inside Docker, update Dockerfile
 - Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
-- Echo versions in Travis config
+- Docker pull node-lint image and lint (in readme, Travis build)
 - Tests
   - ExUnit
   - Doctests
@@ -81,7 +73,7 @@ To run the Life tests, execute the following command:
 ```docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix test```
 
 To run the Life tests automatically on save during local development, execute the following command:
-```mix test.watch```
+```docker run -it --rm --env MIX_ENV=dev -v $PWD:/usr/src/app/ jeremymiller/life-elixir mix test.watch```
 
 ### Run
 To compile the Life application and run the *iex* REPL, execute the following command:
