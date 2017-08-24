@@ -27,7 +27,8 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
   - [Build](#build)
   - [Code Formatting](#code-formatting)
   - [Dependencies](#dependencies)
-  - [Static Code Analysis](#static-code-analysis)
+  - [Elixir Static Code Analysis](#elixir-static-code-analysis)
+  - [Non-Elixir Static Code Analysis](#non-elixir-static-code-analysis)
   - [Test](#test)
   - [Run](#run)
 - [License](#license)
@@ -66,6 +67,13 @@ To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analy
 ```docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix dialyzer```
 *NOTE: The first time this command is run it may take a long time since it needs to create the PLT (see
 [here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
+
+### Non-Elixir Static Code Analysis
+Before running any non-Elixir static code analysis tools, the Docker container containing the tools must be downloaded:
+```docker pull jeremymiller/node-lint```
+
+To run [markdownlint](https://github.com/DavidAnson/markdownlint) on this README.md, execute the following command:
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md```
 
 ### Test
 To run the Life tests, execute the following command:
