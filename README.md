@@ -9,7 +9,6 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
-- Move test.watch to Docker container with volume, add inotify-tools to Dockerfile
 - Docker pull node-lint image and lint (in readme, Travis build)
 - Tests
   - ExUnit
