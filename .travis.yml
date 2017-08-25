@@ -2,6 +2,7 @@ sudo: required
 services:
   - docker
 before_install:
+  - docker pull jeremymiller/life-elixir
   - docker build -t jeremymiller/life-elixir .
   - docker pull jeremymiller/node-lint
 script:
@@ -12,3 +13,5 @@ script:
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push jeremymiller/life-elixir
