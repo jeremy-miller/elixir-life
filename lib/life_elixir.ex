@@ -57,12 +57,12 @@ defmodule LifeElixir do
     map(cells, &(Task.async(fn -> Cell.tick(&1) end)))
   end
 
-  @spec wait_for_ticks(list) :: list
+  @spec wait_for_ticks(list) :: positions
   defp wait_for_ticks(asyncs) do
     map(asyncs, &Task.await/1)
   end
 
-  @spec consolidate_cell_updates(list) :: {positions, positions}
+  @spec consolidate_cell_updates(positions) :: {positions, positions}
   defp consolidate_cell_updates(ticks) do
     reduce(ticks, {[], []}, &consolidate_ticks/2)
   end
