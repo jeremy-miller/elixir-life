@@ -1,7 +1,6 @@
 _build/
 deps/
 docs/
-.git
 .gitignore
 .travis.yml
 LICENSE
