@@ -2,7 +2,6 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker pull jeremymiller/life-elixir
   - docker build -t jeremymiller/life-elixir .
   - docker pull jeremymiller/node-lint
 script:
