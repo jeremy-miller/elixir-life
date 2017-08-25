@@ -72,8 +72,11 @@ To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analy
 Before running any non-Elixir static code analysis tools, the Docker container containing the tools must be downloaded:
 ```docker pull jeremymiller/node-lint```
 
+To run [Dockerfilelint]() on the Dockerfile in this repository, execute the following command:
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint dockerfile_lint Dockerfile```
+
 To run [markdownlint](https://github.com/DavidAnson/markdownlint) on this README.md, execute the following command:
-```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md```
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint README.md```
 
 ### Test
 To run the Life tests, execute the following command:
