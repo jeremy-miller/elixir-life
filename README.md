@@ -50,8 +50,8 @@ This implementation uses a Docker container to isolate the execution environment
 Before interacting with the Life game, the Docker container must be built:
 ```docker build -t jeremymiller/life-elixir .```
 
-*NOTE: This may take a long time since it needs to create the PLT for Dialyzer (see
-[here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
+*NOTE: This may take a long time since it creates the Persistent Lookup Table (PLT) for Dialyzer
+(see [here](https://github.com/jeremyjh/dialyxir#plt) for more information).*
 
 ### Code Formatting
 To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the following command (substituting a file path):
