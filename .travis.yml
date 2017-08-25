@@ -13,5 +13,3 @@ script:
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint dockerfile_lint -r .dockerfilelintrc -f app/Dockerfile
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push jeremymiller/life-elixir
