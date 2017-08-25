@@ -9,7 +9,6 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
-- Use node-lint to lint dockerfile, add to Travis build, add to readme
 - Tests
   - ExUnit
   - Doctests
