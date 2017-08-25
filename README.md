@@ -50,6 +50,9 @@ This implementation uses a Docker container to isolate the execution environment
 Before interacting with the Life game, the Docker container must be built:
 ```docker build -t jeremymiller/life-elixir .```
 
+*NOTE: This may take a long time since it needs to create the PLT for Dialyzer (see
+[here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
+
 ### Code Formatting
 To run the [exfmt](https://github.com/lpil/exfmt) code formatter, execute the following command (substituting a file path):
 ```docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix exfmt <path to file>```
@@ -64,8 +67,6 @@ To run the [Credo](https://github.com/rrrene/credo) static code analyzer, execut
 
 To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analyzer, execute the following command:
 ```docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix dialyzer```
-*NOTE: The first time this command is run it may take a long time since it needs to create the PLT (see
-[here](https://github.com/jeremyjh/dialyxir#usage) for more information).*
 
 ### Non-Elixir Static Code Analysis
 Before running any non-Elixir static code analysis tools, the Docker container containing the tools must be downloaded:
