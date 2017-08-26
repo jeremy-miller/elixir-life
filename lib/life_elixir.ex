@@ -57,22 +57,22 @@ defmodule LifeElixir do
     map(cells, &(Task.async(fn -> Cell.tick(&1) end)))
   end
 
-  @spec wait_for_ticks(list) :: positions
+  @spec wait_for_ticks(list) :: [{positions, cells}]
   defp wait_for_ticks(asyncs) do
     map(asyncs, &Task.await/1)
   end
 
-  @spec consolidate_cell_updates(positions) :: {positions, positions}
+  @spec consolidate_cell_updates([{positions, cells}]) :: {positions, cells}
   defp consolidate_cell_updates(ticks) do
     reduce(ticks, {[], []}, &consolidate_ticks/2)
   end
 
-  @spec consolidate_ticks({positions, positions}, {[], []}) :: {positions, positions}
+  @spec consolidate_ticks({positions, cells}, {[], []}) :: {positions, cells}
   defp consolidate_ticks({create, destroy}, {acc_create, acc_destroy}) do
     {acc_create ++ create, acc_destroy ++ destroy}
   end
 
-  @spec update_cells({positions, positions}) :: list
+  @spec update_cells({positions, cells}) :: list
   defp update_cells({to_create, to_destroy}) do
     map(to_create, &Cell.create/1)
     map(to_destroy, &Cell.destroy/1)
