@@ -12,7 +12,7 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 - Tests
   - ExUnit
   - Doctests
-  - Quixir
+  - StreamData, Quixir
 - Code coverage
 - Phoenix
 - D3
