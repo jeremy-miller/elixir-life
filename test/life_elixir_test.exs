@@ -1,5 +1,5 @@
 defmodule LifeElixirTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest LifeElixir
 
   test "the truth" do
