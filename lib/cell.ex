@@ -43,7 +43,7 @@ defmodule Cell do
   @doc """
   Remove the given `cell` process (at some `x` and `y` position).
   """
-  @spec destroy(position) :: :ok | {:error, String.t}
+  @spec destroy(position) :: :ok | {:error, :simple_one_for_one}
   def destroy(cell) do
     Supervisor.terminate_child(Cell.Supervisor, cell)
   end
