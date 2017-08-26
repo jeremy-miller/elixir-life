@@ -35,7 +35,7 @@ defmodule Cell do
   Start a new `cell` child process in the supervisor, passing `position` as its initial state.
   Will call `Cell.start_link/1`.
   """
-  @spec create(position) :: {:ok, pid} | {:error, String.t}
+  @spec create(position) :: {:ok, pid} | {:error, {:already_started, pid}}
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
   end
