@@ -41,11 +41,11 @@ defmodule Cell do
   end
 
   @doc """
-  Remove the given `cell` process (at some `x` and `y` position).
+  Remove the given `pid`.
   """
-  @spec destroy(position) :: :ok | {:error, :simple_one_for_one}
-  def destroy(cell) do
-    Supervisor.terminate_child(Cell.Supervisor, cell)
+  @spec destroy(pid) :: :ok | {:error, :not_found}
+  def destroy(pid) do
+    Supervisor.terminate_child(Cell.Supervisor, pid)
   end
 
   @doc """
