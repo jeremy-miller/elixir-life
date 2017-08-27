@@ -52,7 +52,45 @@ defmodule CellTest do
     Supervisor.terminate_child(Cell.Supervisor, pid)
   end
 
-  # TODO test with cells to create, none to destory
-  # TODO test with no cells to create, none to destroy
-  # TODO test with cells to create, cell to destroy
+  test "tick/1 returns no cells to create, no cells to destroy" do
+    position1 = {3, 0}
+    position2 = {3, 1}
+    position3 = {4, 0}
+    position4 = {4, 1}
+    {:ok, pid1} = Cell.create(position1)
+    {:ok, pid2} = Cell.create(position2)
+    {:ok, pid3} = Cell.create(position3)
+    {:ok, pid4} = Cell.create(position4)
+    assert Cell.tick(pid2) == {[], []}
+    Supervisor.terminate_child(Cell.Supervisor, pid1)
+    Supervisor.terminate_child(Cell.Supervisor, pid2)
+    Supervisor.terminate_child(Cell.Supervisor, pid3)
+    Supervisor.terminate_child(Cell.Supervisor, pid4)
+  end
+
+  test "tick/1 returns cells to create, no cells to destroy" do
+    position1 = {6, 0}
+    position2 = {6, 1}
+    position3 = {6, 2}
+    {:ok, pid1} = Cell.create(position1)
+    {:ok, pid2} = Cell.create(position2)
+    {:ok, pid3} = Cell.create(position3)
+    assert Cell.tick(pid2) == {[{5, 1}, {7, 1}], []}
+    Supervisor.terminate_child(Cell.Supervisor, pid1)
+    Supervisor.terminate_child(Cell.Supervisor, pid2)
+    Supervisor.terminate_child(Cell.Supervisor, pid3)
+  end
+
+  test "tick/1 returns cells to create and its own `pid` to destroy" do
+    position1 = {8, 0}
+    position2 = {8, 1}
+    position3 = {8, 2}
+    {:ok, pid1} = Cell.create(position1)
+    {:ok, pid2} = Cell.create(position2)
+    {:ok, pid3} = Cell.create(position3)
+    assert Cell.tick(pid1) == {[{7, 1}, {9, 1}], [pid1]}
+    Supervisor.terminate_child(Cell.Supervisor, pid1)
+    Supervisor.terminate_child(Cell.Supervisor, pid2)
+    Supervisor.terminate_child(Cell.Supervisor, pid3)
+  end
 end
