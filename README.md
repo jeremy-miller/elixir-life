@@ -10,9 +10,7 @@ Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/C
 [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
 
 ## Tasks
-- Tests
-  - Doctests
-  - StreamData, Quixir
+- StreamData, Quixir
 - Phoenix
 - D3
 - Dropdown selection for which type of pattern to use

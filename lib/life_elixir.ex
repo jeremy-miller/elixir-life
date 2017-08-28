@@ -25,8 +25,13 @@ defmodule LifeElixir do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  @doc """
+  @doc ~S"""
   `Tick` the Game of Life simulation once.  Calls `Cell.tick/1` on each living cell.
+
+  ## Examples
+
+      iex> LifeElixir.tick
+      :ok
   """
   @spec tick :: :ok
   def tick do
