@@ -25,7 +25,7 @@ defmodule Cell do
   @doc """
   Start a cell and register it in the Registry, using the `position` as its name.
   """
-  @spec start_link(position) :: {:ok, pid} | {:error, {:already_started, pid}}
+  @spec start_link(position) :: {:ok, pid}
   def start_link(position) do
     via_tuple = {:via, Registry, {Cell.Registry, position}}
     GenServer.start_link(__MODULE__, position, name: via_tuple)
@@ -35,7 +35,7 @@ defmodule Cell do
   Start a new `cell` child process in the supervisor, passing `position` as its initial state.
   Will call `Cell.start_link/1`.
   """
-  @spec create(position) :: {:ok, pid} | {:error, {:already_started, pid}}
+  @spec create(position) :: {:ok, pid}
   def create(position) do
     Supervisor.start_child(Cell.Supervisor, [position])
   end
@@ -43,7 +43,7 @@ defmodule Cell do
   @doc """
   Remove the given `pid`.
   """
-  @spec destroy(pid) :: :ok | {:error, :not_found}
+  @spec destroy(pid) :: :ok
   def destroy(pid) do
     Supervisor.terminate_child(Cell.Supervisor, pid)
   end
