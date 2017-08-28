@@ -32,6 +32,7 @@ defmodule LifeElixir.Mixfile do
     [
       {:credo, "~> 0.8", only: :dev, runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.7", only: :test},
       {:exfmt, "~> 0.4", only: :dev, runtime: false},
       {:inch_ex, "~> 0.5", only: :docs, runtime: false},
       {:mix_test_watch, "~> 0.4", only: :dev, runtime: false}
