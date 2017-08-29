@@ -6,12 +6,13 @@
 [![Erlang/OTP Version](https://img.shields.io/badge/Erlang%2FOTP-19.3-blue.svg)]()
 
 # Life (in Elixir)
-Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), based on
+Elixir implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
+The application logic is based on
 [this](http://www.east5th.co/blog/2017/02/06/playing-the-game-of-life-with-elixir-processes/) blog.
+The web server implementation is based on
+[this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
-- StreamData, Quixir
-- Phoenix
 - D3
 - Dropdown selection for which type of pattern to use
 - Example usage gif
