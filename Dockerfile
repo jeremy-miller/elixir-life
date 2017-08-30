@@ -14,4 +14,5 @@ RUN mix deps.compile
 RUN mix dialyzer --plt
 COPY . /usr/src/app
 RUN mix compile
+RUN mix compile /usr/src/app/apps/life_elixir
 CMD ["iex", "-S", "mix"]
