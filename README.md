@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/jeremy-miller/life-elixir.svg?branch=master)](https://travis-ci.org/jeremy-miller/life-elixir)
-[![Coverage Status](https://coveralls.io/repos/github/jeremy-miller/life-elixir/badge.svg?branch=)](https://coveralls.io/github/jeremy-miller/life-elixir?branch=)
+[![Coverage Status](https://coveralls.io/repos/github/jeremy-miller/life-elixir/badge.svg?branch=master)](https://coveralls.io/github/jeremy-miller/life-elixir?branch=master)
 [![Inline docs](http://inch-ci.org/github/jeremy-miller/life-elixir.svg)](http://inch-ci.org/github/jeremy-miller/life-elixir)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)
 [![Elixir Version](https://img.shields.io/badge/Elixir-1.4-blue.svg)]()
