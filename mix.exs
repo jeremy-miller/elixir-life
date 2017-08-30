@@ -7,6 +7,7 @@ defmodule Umbrella.Mixfile do
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
+      dialyzer: [paths: ["_build/dev/lib/life_elixir/ebin"]],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test]
     ]

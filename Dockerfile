@@ -13,5 +13,5 @@ RUN mix deps.get
 RUN mix deps.compile
 RUN mix dialyzer --plt
 COPY . /usr/src/app
-RUN MIX_ENV=dev mix compile
+RUN mix compile
 CMD ["iex", "-S", "mix"]
