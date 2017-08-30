@@ -9,7 +9,7 @@ defmodule CellTest do
     assert Registry.lookup(Cell.Registry, position) == [{pid, nil}]
     Supervisor.terminate_child(Cell.Supervisor, pid)
   end
-  
+
   test "create/1 creates a new cell a `position` in the Supervisor" do
     position = {1, 2}
     {:ok, pid} = Cell.create(position)

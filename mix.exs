@@ -1,24 +1,15 @@
-defmodule LifeElixir.Mixfile do
+defmodule Umbrella.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :life_elixir,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps(),
-     test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test]]
-  end
-
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
-  def application do
-    # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger],
-     mod: {LifeElixir.Application, []}]
+    [
+      apps_path: "apps",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test]
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -29,7 +20,10 @@ defmodule LifeElixir.Mixfile do
   #
   #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
   #
-  # Type "mix help deps" for more examples and options
+  # Type "mix help deps" for more examples and options.
+  #
+  # Dependencies listed here are available only for this project
+  # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
       {:credo, "~> 0.8", only: :dev, runtime: false},

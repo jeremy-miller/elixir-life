@@ -1,7 +1,7 @@
 defmodule CellSupervisorTest do
   use ExUnit.Case, async: true
   doctest Cell.Supervisor
-  
+
   test "get_living_cells/0 returns empty list" do
     assert Cell.Supervisor.get_living_cells == []
   end
