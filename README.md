@@ -30,12 +30,13 @@ The web server implementation is based on
 - [License](#license)
 
 ## Motivation
-I created this project for two reasons:
+I created this project for three reasons:
 
 1. To use Elixir's "process-first" approach to implement Conway's Game of Life.
 2. To compare a "process-first" implementation of Conway's Game of Life with my
 [Clojure](https://github.com/jeremy-miller/life-clojure) and
 [Python](https://github.com/jeremy-miller/life-python) implementations.
+3. Try out Elixir's [Phoenix](http://phoenixframework.org/) web framework.
 
 ## Usage
 This implementation uses a Docker container to isolate the execution environment.
