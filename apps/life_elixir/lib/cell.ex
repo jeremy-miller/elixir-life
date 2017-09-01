@@ -57,6 +57,14 @@ defmodule Cell do
     GenServer.call(cell, :tick)
   end
 
+  @doc """
+  Return the `position` of the given `process`.
+  """
+  @spec position(pid) :: position
+  def position(process) do
+    GenServer.call(process, {:position})
+  end
+
   #############
   # Callbacks
   #############

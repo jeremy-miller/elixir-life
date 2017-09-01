@@ -32,4 +32,14 @@ defmodule Cell.Supervisor do
     |> Supervisor.which_children
     |> map(fn {_, pid, _, _} -> pid end)
   end
+
+  @doc """
+  Return `{x: _, y: _}` struct of position for each living cell.
+  """
+  @spec get_living_cell_positions :: [%{x: integer, y: integer}]
+  def get_living_cell_positions do
+    get_living_cells
+    |> Enum.map(&Cell.position/1)
+    |> Enum.map(fn {x, y} -> %{x: x, y: y} end)
+  end
 end
