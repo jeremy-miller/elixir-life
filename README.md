@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/jeremy-miller/life-elixir.svg?branch=master)](https://travis-ci.org/jeremy-miller/life-elixir)
 [![Coverage Status](https://coveralls.io/repos/github/jeremy-miller/life-elixir/badge.svg?branch=master)](https://coveralls.io/github/jeremy-miller/life-elixir?branch=master)
-[![Inline docs](http://inch-ci.org/github/jeremy-miller/life-elixir.svg)](http://inch-ci.org/github/jeremy-miller/life-elixir)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)
 [![Elixir Version](https://img.shields.io/badge/Elixir-1.4-blue.svg)]()
 [![Erlang/OTP Version](https://img.shields.io/badge/Erlang%2FOTP-19.3-blue.svg)]()
@@ -13,8 +12,6 @@ The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
-- Try generating documentation, check in if good
-- Test Inch CI doc coverage
 - Add patterns
 - Document how to change patterns
 - Example usage gif in readme
