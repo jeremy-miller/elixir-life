@@ -25,7 +25,9 @@ import "phoenix_html";
 import {Socket} from "phoenix";
 
 let canvas = 16;
+let context = 16;
 
+// eslint-disable-next-line no-shadow
 function getPixelRatio(context) {
   const backingStore =
     context.backingStorePixelRatio ||
@@ -41,7 +43,7 @@ function getPixelRatio(context) {
 
 function setupCanvas() {
   canvas = document.getElementById("canvas") || 16;
-  const context = canvas.getContext("2d") || 16;
+  context = canvas.getContext("2d") || 16;
   const ratio = getPixelRatio(context);
   canvas.width = window.innerWidth * ratio;
   canvas.height = window.innerHeight * ratio;
@@ -53,7 +55,6 @@ function setupCanvas() {
 
 function render(positions) {
   const scale = 16;
-  const context = 16;
   context.clearRect(0, 0, canvas.width, canvas.height);
   positions.forEach(({x, y}) => {
     context.fillRect(x * scale, y * scale, scale, scale);
