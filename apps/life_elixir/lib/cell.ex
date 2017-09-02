@@ -69,12 +69,12 @@ defmodule Cell do
   # Callbacks
   #############
 
-  @spec handle_call(atom, any, position) :: {:reply, {positions, positions}, position}
+  @spec handle_call(:tick, any, position) :: {:reply, {positions, positions}, position}
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
   end
 
-  @spec handle_call(atom, any, position) :: {:reply, position, position}
+  @spec handle_call(:position, any, position) :: {:reply, position, position}
   def handle_call(:position, _from, position) do
     {:reply, position, position}
   end
