@@ -13,7 +13,6 @@ The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
-- Get tests working
 - Test in browser
 - Test in Docker
 - Setup node-lint to lint HTML, CSS, JS files

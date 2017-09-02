@@ -3,6 +3,7 @@ defmodule InterfaceWeb.UserSocket do
 
   ## Channels
   # channel "room:*", InterfaceWeb.RoomChannel
+  channel "life", Interface.LifeChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
