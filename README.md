@@ -13,8 +13,6 @@ The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
-- Test in browser
-- Test in Docker
 - Setup node-lint to lint HTML, CSS, JS files
   - Add to readme
   - Add to Travis build
@@ -23,7 +21,7 @@ The web server implementation is based on
 - Try generating documentation, check in if good
 - Test Inch CI doc coverage
 - Add patterns
-- Dropdown selection for which type of pattern to use
+- Document how to change patterns
 - Example usage gif in readme
 
 ## Table of Contents
@@ -95,8 +93,11 @@ To run the Life tests automatically on save during local development, execute th
 ```docker run -it --rm --env MIX_ENV=dev -v $PWD:/usr/src/app/ jeremymiller/life-elixir mix test.watch```
 
 ### Run
-To compile the Life application and run the *iex* REPL, execute the following command:
-```docker run -it --rm -p 4000:4000 --env MIX_ENV=prod jeremymiller/life-elixir```
+To run the Game of Life simulation, execute the following steps.
+
+1. Start the Phoenix server by executing the following command:
+```docker run -it --rm -p 4000:4000 --env MIX_ENV=dev jeremymiller/life-elixir```
+2. Connect to [http://localhost:4000](http://localhost:4000) in your web browser.
 
 ## License
 [MIT](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)

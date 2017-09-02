@@ -69,20 +69,10 @@ function setupSocket() {
         render(cells.positions);
       });
 
-      $("body").on("keypress", () => {
-        playing = !playing;
-        sent = Date.now();
-        if (playing) {
-          setTimeout(function tick() {
-            channel.push("tick");
-            let duration = Date.now() - sent - interval;
-            if (playing) {
-              setTimeout(tick, interval - duration);
-              sent = Date.now();
-            }
-          }, interval);
-        }
-      });
+      setTimeout(function tick() {
+        channel.push("tick");
+        setTimeout(tick, 100);
+      }, 100);
     })
     .receive("error", resp => console.error);
 }
