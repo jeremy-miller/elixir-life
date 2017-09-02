@@ -1,3 +1,5 @@
+/* global document window */
+
 // Brunch automatically concatenates all files in your
 // watched paths. Those paths can be configured at
 // config.paths.watched in "brunch-config.js".
@@ -11,7 +13,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html"
+import "phoenix_html";
 
 // Import local files
 //
@@ -22,32 +24,36 @@ import "phoenix_html"
 
 import {Socket} from "phoenix";
 
-let canvas, context, scale = 16, interval = 100;
+let canvas = 16;
 
 function getPixelRatio(context) {
-  var backingStore = context.backingStorePixelRatio ||
-                     context.webkitBackingStorePixelRatio ||
-                     context.mozBackingStorePixelRatio ||
-                     context.msBackingStorePixelRatio ||
-                     context.oBackingStorePixelRatio ||
-                     context.backingStorePixelRatio || 1;
+  const backingStore =
+    context.backingStorePixelRatio ||
+    context.webkitBackingStorePixelRatio ||
+    context.mozBackingStorePixelRatio ||
+    context.msBackingStorePixelRatio ||
+    context.oBackingStorePixelRatio ||
+    context.backingStorePixelRatio ||
+    1;
 
   return (window.devicePixelRatio || 1) / backingStore;
-};
+}
 
 function setupCanvas() {
-  canvas = document.getElementById("canvas");
-  context = canvas.getContext("2d");
-  let ratio = getPixelRatio(context);
+  canvas = document.getElementById("canvas") || 16;
+  const context = canvas.getContext("2d") || 16;
+  const ratio = getPixelRatio(context);
   canvas.width = window.innerWidth * ratio;
   canvas.height = window.innerHeight * ratio;
   canvas.style.width = `${window.innerWidth}px`;
   canvas.style.height = `${window.innerHeight}px`;
   context.scale(ratio, ratio);
-  context.fillStyle = 'rgb(0, 0, 0)';
+  context.fillStyle = "rgb(0, 0, 0)";
 }
 
 function render(positions) {
+  const scale = 16;
+  const context = 16;
   context.clearRect(0, 0, canvas.width, canvas.height);
   positions.forEach(({x, y}) => {
     context.fillRect(x * scale, y * scale, scale, scale);
@@ -55,16 +61,17 @@ function render(positions) {
 }
 
 function setupSocket() {
-  let socket = new Socket("/socket");
-  let sent, playing = false;
+  const socket = new Socket("/socket");
 
   socket.connect();
 
-  let channel = socket.channel("life", {});
-  channel.join()
+  const channel = socket.channel("life", {});
+  channel
+    .join()
     .receive("ok", cells => {
       render(cells.positions);
 
+      // eslint-disable-next-line no-shadow
       channel.on("tick", cells => {
         render(cells.positions);
       });
@@ -74,6 +81,7 @@ function setupSocket() {
         setTimeout(tick, 100);
       }, 100);
     })
+    // eslint-disable-next-line no-unused-vars
     .receive("error", resp => console.error);
 }
 

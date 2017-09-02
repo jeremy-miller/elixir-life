@@ -13,11 +13,6 @@ The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
-- Setup node-lint to lint HTML, CSS, JS files
-  - Add to readme
-  - Add to Travis build
-  - Add config files to node-lint repo
-  - Update node-lint repo with commands for using other linting tools
 - Try generating documentation, check in if good
 - Test Inch CI doc coverage
 - Add patterns
@@ -82,11 +77,14 @@ Before running any non-Elixir static code analysis tools, the Docker
 To run [Dockerfilelint](https://www.npmjs.com/package/dockerfilelint) on the `Dockerfile` in this repository, execute the following command:
 ```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint dockerfile_lint -r .dockerfilelintrc -f app/Dockerfile```
 
+To run [ESLint](https://www.npmjs.com/package/eslint) on `app.js`, execute the following command:
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint eslint app/apps/interface/assets/js/app.js```
+
 To run [markdownlint](https://www.npmjs.com/package/markdownlint) on this `README.md`, execute the following command:
 ```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md```
 
-To run [ESLint](https://www.npmjs.com/package/eslint) on `app.js`, execute the following command:
-```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint eslint app/apps/interface/asstes/js/app.js```
+To run [stylelint](https://www.npmjs.com/package/stylelint), execute the following command:
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint stylelint app/apps/interface/assets/css/app.css```
 
 ### Test
 To run the Life tests, execute the following command:
