@@ -11,6 +11,7 @@ script:
   - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix test
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint dockerfile_lint -r .dockerfilelintrc -f app/Dockerfile
+  - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint eslint app/apps/interface/asstes/js/app.js
 after_success:
   - docker run -it --rm --env MIX_ENV=docs jeremymiller/life-elixir mix inch.report --pedantic
   - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix coveralls.post --token $COVERALLS_REPO_TOKEN

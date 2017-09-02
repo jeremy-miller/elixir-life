@@ -82,8 +82,11 @@ Before running any non-Elixir static code analysis tools, the Docker
 To run [Dockerfilelint](https://www.npmjs.com/package/dockerfilelint) on the `Dockerfile` in this repository, execute the following command:
 ```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint dockerfile_lint -r .dockerfilelintrc -f app/Dockerfile```
 
-To run [markdownlint](https://github.com/DavidAnson/markdownlint) on this `README.md`, execute the following command:
+To run [markdownlint](https://www.npmjs.com/package/markdownlint) on this `README.md`, execute the following command:
 ```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md```
+
+To run [ESLint](https://www.npmjs.com/package/eslint) on `app.js`, execute the following command:
+```docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint eslint app/apps/interface/asstes/js/app.js```
 
 ### Test
 To run the Life tests, execute the following command:
