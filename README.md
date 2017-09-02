@@ -78,7 +78,8 @@ To run the [Dialyzer](http://erlang.org/doc/man/dialyzer.html) static code analy
 ```docker run -it --rm --env MIX_ENV=dev jeremymiller/life-elixir mix dialyzer```
 
 ### Non-Elixir Static Code Analysis
-Before running any non-Elixir static code analysis tools, the Docker container containing the tools must be downloaded:
+Before running any non-Elixir static code analysis tools, the Docker
+[image](https://hub.docker.com/r/jeremymiller/node-lint/) containing the tools must be downloaded:
 ```docker pull jeremymiller/node-lint```
 
 To run [Dockerfilelint](https://www.npmjs.com/package/dockerfilelint) on the `Dockerfile` in this repository, execute the following command:
