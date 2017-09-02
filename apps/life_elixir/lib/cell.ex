@@ -58,11 +58,11 @@ defmodule Cell do
   end
 
   @doc """
-  Return the `position` of the given `process`.
+  Return the `position` of the given `cell`.
   """
   @spec position(pid) :: position
-  def position(process) do
-    GenServer.call(process, {:position})
+  def position(cell) do
+    GenServer.call(cell, :position)
   end
 
   #############
@@ -72,6 +72,11 @@ defmodule Cell do
   @spec handle_call(atom, any, position) :: {:reply, {positions, positions}, position}
   def handle_call(:tick, _from, position) do
     {:reply, {to_create(position), to_destroy(position)}, position}
+  end
+
+  @spec handle_call(atom, any, position) :: {:reply, position, position}
+  def handle_call(:position, _from, position) do
+    {:reply, position, position}
   end
 
   @spec to_create(position) :: positions

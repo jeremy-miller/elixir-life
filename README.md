@@ -13,8 +13,19 @@ The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
 ## Tasks
+- Get tests working
+- Test in browser
+- Test in Docker
+- Setup node-lint to lint HTML, CSS, JS files
+  - Add to readme
+  - Add to Travis build
+  - Add config files to node-lint repo
+  - Update node-lint repo with commands for using other linting tools
+- Try generating documentation, check in if good
+- Test Inch CI doc coverage
+- Add patterns
 - Dropdown selection for which type of pattern to use
-- Example usage gif
+- Example usage gif in readme
 
 ## Table of Contents
 - [Motivation](#motivation)
@@ -85,7 +96,7 @@ To run the Life tests automatically on save during local development, execute th
 
 ### Run
 To compile the Life application and run the *iex* REPL, execute the following command:
-```docker run -it --rm --env MIX_ENV=prod jeremymiller/life-elixir```
+```docker run -it --rm -p 4000:4000 --env MIX_ENV=prod jeremymiller/life-elixir```
 
 ## License
 [MIT](https://github.com/jeremy-miller/life-elixir/blob/master/LICENSE)

@@ -7,9 +7,7 @@ defmodule Umbrella.Mixfile do
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      dialyzer: [paths: ["_build/dev/lib/life_elixir/ebin"]],
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test]
+      dialyzer: [paths: ["_build/dev/lib/life_elixir/ebin"]]
     ]
   end
 
@@ -27,12 +25,7 @@ defmodule Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.8", only: :dev, runtime: false},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.7", only: :test, runtime: false},
-      {:exfmt, "~> 0.4", only: :dev, runtime: false},
-      {:inch_ex, "~> 0.5", only: :docs, runtime: false},
-      {:mix_test_watch, "~> 0.4", only: :dev, runtime: false}
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 end

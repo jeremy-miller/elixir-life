@@ -38,7 +38,7 @@ defmodule Cell.Supervisor do
   """
   @spec get_living_cell_positions :: [%{x: integer, y: integer}]
   def get_living_cell_positions do
-    get_living_cells
+    get_living_cells()
     |> Enum.map(&Cell.position/1)
     |> Enum.map(fn {x, y} -> %{x: x, y: y} end)
   end

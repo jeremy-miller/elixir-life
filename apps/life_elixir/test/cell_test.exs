@@ -62,15 +62,21 @@ defmodule CellTest do
   end
 
   test "tick/1 returns cells to create and its own `pid` to destroy" do
-    position1 = {8, 0}
-    position2 = {8, 1}
-    position3 = {8, 2}
+    position1 = {30, 0}
+    position2 = {30, 1}
+    position3 = {30, 2}
     {:ok, pid1} = Cell.create(position1)
     {:ok, pid2} = Cell.create(position2)
     {:ok, pid3} = Cell.create(position3)
-    assert Cell.tick(pid1) == {[{7, 1}, {9, 1}], [pid1]}
+    assert Cell.tick(pid1) == {[{29, 1}, {31, 1}], [pid1]}
     Supervisor.terminate_child(Cell.Supervisor, pid1)
     Supervisor.terminate_child(Cell.Supervisor, pid2)
     Supervisor.terminate_child(Cell.Supervisor, pid3)
+  end
+
+  test "position/1 returns correct cell position" do
+    position = {10, 0}
+    {:ok, pid} = Cell.create(position)
+    assert Cell.position(pid) == position
   end
 end
