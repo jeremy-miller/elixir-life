@@ -11,10 +11,7 @@ The application logic is based on
 The web server implementation is based on
 [this](http://www.east5th.co/blog/2017/02/20/rendering-life-on-a-canvas-with-phoenix-sockets/) blog.
 
-## Tasks
-- Add patterns
-- Document how to change patterns
-- Example usage gif in readme
+![Usage](https://github.com/jeremy-miller/life-elixir/blob/master/usage.gif)
 
 ## Table of Contents
 - [Motivation](#motivation)
