@@ -6,7 +6,7 @@ defmodule Pattern do
   @doc """
   Returns a diehard methuselah configuration based at the given `x` and `y`.
   """
-  @spec diehard(integer, integer) :: [{integer,integer}]
+  @spec diehard(integer, integer) :: [{integer, integer}]
   def diehard(x, y) do
     [
                                                       {6, 2},
