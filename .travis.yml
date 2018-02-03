@@ -14,5 +14,4 @@ script:
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint markdownlint app/README.md
   - docker run -it --rm -v $PWD:/usr/src/app jeremymiller/node-lint stylelint app/apps/interface/assets/css/app.css
 after_success:
-  - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix do compile --warnings-as-errors, coveralls.json
-  - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+  - docker run -it --rm --env MIX_ENV=test jeremymiller/life-elixir mix coveralls.post --token $COVERALLS_REPO_TOKEN
